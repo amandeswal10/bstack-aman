@@ -1,49 +1,59 @@
-const { config: baseConfig } = require('./base.conf.js');
+import 'dotenv/config';
 
-const parallelConfig = {
-  maxInstances: 10,
-  commonCapabilities: {
-    'bstack:options': {
-      buildName: 'browserstack build',
-      source: 'webdriverio:sample-master:v1.2'
-    }
-  },
+export const config = {
+  user: process.env.BROWSERSTACK_USERNAME,
+  key: process.env.BROWSERSTACK_ACCESS_KEY,
+  hostname: 'hub.browserstack.com',
   services: [
     [
       'browserstack',
-      { buildIdentifier: '#${BUILD_NUMBER}' },
+      { browserstackLocal: true, opts: { forceLocal: false } },
     ],
   ],
+  // add path to the test file
+  specs: ['./tests/**/*.spec.js'],
   capabilities: [
     {
-      browserName: 'chrome',
-      browserVersion: 'latest',
+      browserName: 'Chrome',
       'bstack:options': {
+        browserVersion: '120.0',
         os: 'Windows',
-        osVersion: '10',
-      },
+        osVersion: '10'
+      }
     },
     {
-      browserName: 'safari',
-      browserVersion: 'latest',
+      browserName: 'Firefox',
       'bstack:options': {
+        browserVersion: '135.0',
         os: 'OS X',
-        osVersion: 'Big Sur',
-      },
+        osVersion: 'Ventura'
+      }
     },
     {
       browserName: 'chrome',
       'bstack:options': {
-        deviceName: 'Samsung Galaxy S20',
-      },
-    },
+        deviceOrientation: 'portrait',
+        deviceName: 'Samsung Galaxy S22',
+        osVersion: '12.0'
+      }
+    }
   ],
+  commonCapabilities: {
+    'bstack:options': {
+      buildName: "bstack-tech-challenge",
+      buildIdentifier: "${BUILD_NUMBER}",
+      projectName: "BrowserStack TechChallenge",
+      networkLogs: "true",
+      consoleLogs: "info",
+      networkLogs: true,
+    }
+  },
+  mochaOpts: {
+    timeout: 60000,
+  }
+  // rest of your config goes here...
 };
-
-exports.config = { ...baseConfig, ...parallelConfig };
-
-// Code to support common capabilities
-exports.config.capabilities.forEach(function (caps) {
-  for (var i in exports.config.commonCapabilities)
-    caps[i] = { ...caps[i], ...exports.config.commonCapabilities[i]};
+config.capabilities.forEach(function (caps) {
+  for (let i in config.commonCapabilities)
+    caps[i] = { ...caps[i], ...config.commonCapabilities[i]};
 });
