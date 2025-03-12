@@ -28,3 +28,19 @@ c. Samsung Galaxy S22 on Android
 
 BrowserStack Integration: The tests are configured to run on BrowserStack's cloud platform. The credentials (BROWSERSTACK_USERNAME and BROWSERSTACK_ACCESS_KEY) are securely injected from environment variables, ensuring safe access to BrowserStack services.
 
+# Running the Test Suite with Jenkins
+The test suite is set up to be run automatically using Jenkins, a continuous integration tool that helps automate the testing process.
+
+How It Works:
+Jenkins Pipeline: The Jenkins pipeline is configured to execute the test suite in multiple stages:
+
+Checkout: It checks out the repository containing the test files.
+Install Dependencies: Installs the necessary Node.js dependencies, including WebDriverIO and BrowserStack configurations.
+Run Tests: Executes the test suite using WebDriverIO via the npx wdio command.
+Jenkins fetches the required credentials (such as BrowserStack username and access key) securely from the Jenkins credentials store, allowing the tests to run on the BrowserStack cloud.
+
+Jenkins Integration:
+
+BrowserStack Plugin: The BrowserStack plugin is integrated into Jenkins, providing a seamless connection between Jenkins and BrowserStack.
+Environment Variables: The BROWSERSTACK_USERNAME and BROWSERSTACK_ACCESS_KEY are stored as Jenkins credentials and injected into the pipeline to authenticate the BrowserStack service securely.
+
