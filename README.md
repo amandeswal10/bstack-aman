@@ -2,11 +2,13 @@ To accomplish this challenge, I cloned the base sample repo found in BrowserStac
 
 # Changes Introduced
 
-1. New Test Suite:
-# Overview
-This test suite is designed to simulate a user's interaction with the BrowserStack demo website. It automates the process of logging in, filtering products, favoriting a device, and verifying that the device appears on the Favorites page.
+1. New Test Suite
+2. Updated test.conf.js:
 
-# Steps Covered in the Test
+# Overview
+The test suite is designed to simulate a user's interaction with the BrowserStack demo website. It automates the process of logging in, filtering products, favoriting a device, and verifying that the device appears on the Favorites page.
+
+Steps Covered in the Test --
 Login: The test begins by navigating to the BrowserStack demo website and clicking on the 'Sign In' link. It then selects the username ("demouser") and password ("testingisfun99") from dropdown options, logs in, and verifies successful login by checking if the logged-in user's name is displayed.
 
 Filter Samsung Devices: After logging in, the test applies a filter to only show Samsung devices, ensuring that the relevant devices are visible.
@@ -18,8 +20,6 @@ Verify Favorites: Finally, the test navigates to the Favorites page and verifies
 # Technologies Used
 WebDriverIO: For browser automation and interaction with the webpage.
 
-
-2. Updated test.conf.js:
 The configuration file (test.conf.js) has been updated to enable parallel test execution. The configuration now runs tests across three different browser and device configurations:
 
 a. Chrome on Windows 10
