@@ -1,6 +1,6 @@
 export const config = {
-  user: process.env.BROWSERSTACK_USERNAME,
-  key: process.env.BROWSERSTACK_ACCESS_KEY,
+  username: process.env.BROWSERSTACK_USERNAME,
+  accessKey: process.env.BROWSERSTACK_ACCESS_KEY,
   hostname: 'hub.browserstack.com',
   services: [
     [
@@ -44,6 +44,8 @@ export const config = {
       networkLogs: "true",
       consoleLogs: "info",
       networkLogs: true,
+      userName: username,
+      accessKey : accessKey,
     }
   },
   mochaOpts: {
