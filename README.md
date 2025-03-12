@@ -1,33 +1,30 @@
-# webdriverio-browserstack
-[WebdriverIO](http://webdriver.io/) Integration with BrowserStack.
+To accomplish this challenge, I cloned the base sample repo found in BrowserStack's documentation.
 
-![BrowserStack Logo](https://d98b8t1nnulk5.cloudfront.net/production/images/layout/logo-header.png?1469004780)
+# Changes Introduced
 
-<img src = "https://webdriver.io/img/webdriverio.png" height = "100">
+1. New Test Suite:
+# Overview
+This test suite is designed to simulate a user's interaction with the BrowserStack demo website. It automates the process of logging in, filtering products, favoriting a device, and verifying that the device appears on the Favorites page.
 
-## Setup
-* Clone the repo
-* Install dependencies `npm install`
-* You can setup environment variables for all sample repos (see Notes) or update `*.conf.js` files inside the `conf/` directory with your [BrowserStack Username and Access Key](https://www.browserstack.com/accounts/settings)
+# Steps Covered in the Test
+Login: The test begins by navigating to the BrowserStack demo website and clicking on the 'Sign In' link. It then selects the username ("demouser") and password ("testingisfun99") from dropdown options, logs in, and verifies successful login by checking if the logged-in user's name is displayed.
 
-## Running your tests
-- To run parallel tests, run `npm run test`
-- To run local test, run `npm run local`
+Filter Samsung Devices: After logging in, the test applies a filter to only show Samsung devices, ensuring that the relevant devices are visible.
 
- Understand how many parallel sessions you need by using our [Parallel Test Calculator](https://www.browserstack.com/automate/parallel-calculator?ref=github)
+Favorite Galaxy S20+: The test locates the Galaxy S20+ device, clicks the favorite button, and adds it to the user's favorites.
 
-## Notes
-* You can view your test results on the [BrowserStack automate dashboard](https://www.browserstack.com/automate)
-* To test on a different set of browsers, check out our [platform configurator](https://www.browserstack.com/automate/capabilities)
-* You can export the environment variables for the Username and Access Key of your BrowserStack account
-  
-  ```sh
-  export BROWSERSTACK_USERNAME=<browserstack-username> &&
-  export BROWSERSTACK_ACCESS_KEY=<browserstack-access-key>
-  ```
-  
-## Additional Resources
-* [Documentation for writing automate test scripts in Node](https://www.browserstack.com/automate/node)
-* [Customizing your tests on BrowserStack](https://www.browserstack.com/automate/capabilities)
-* [Browsers & mobile devices for selenium testing on BrowserStack](https://www.browserstack.com/list-of-browsers-and-platforms?product=automate)
-* [Using REST API to access information about your tests via the command-line interface](https://www.browserstack.com/automate/rest-api)
+Verify Favorites: Finally, the test navigates to the Favorites page and verifies that the Galaxy S20+ is displayed in the favorites list.
+
+# Technologies Used
+WebDriverIO: For browser automation and interaction with the webpage.
+
+
+2. Updated test.conf.js:
+The configuration file (test.conf.js) has been updated to enable parallel test execution. The configuration now runs tests across three different browser and device configurations:
+
+a. Chrome on Windows 10
+b. Firefox on macOS Ventura
+c. Samsung Galaxy S22 on Android
+
+BrowserStack Integration: The tests are configured to run on BrowserStack's cloud platform. The credentials (BROWSERSTACK_USERNAME and BROWSERSTACK_ACCESS_KEY) are securely injected from environment variables, ensuring safe access to BrowserStack services.
+
