@@ -10,7 +10,7 @@ describe('BrowserStack Demo Test Suite', () => {
         await signInLink.click();
         
         // Step 3: Select username/password from dropdowns and Login
-        await $('#username input').waitForExist({ timeout: 5000 });
+        await $('#username').waitForClickable({ timeout: 5000 });
         await $('#username').click();
         const usernameOption = await $('//div[text()="demouser"]');
         await browser.execute("arguments[0].click();", usernameOption);
@@ -25,6 +25,7 @@ describe('BrowserStack Demo Test Suite', () => {
         await loginButton.click();
 
         const loggedInUser = await $('span.username');
+        await loggedInUser.waitForDisplayed({ timeout: 5000 });
         await expect(loggedInUser).toHaveTextContaining('demouser');
 
         // Step 4: Filter products to show only Samsung devices
